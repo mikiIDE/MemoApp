@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native"
-import { Feather } from "@expo/vector-icons" //アイコンのために読み込む！Featherはライブラリ名
+// import { Feather } from "@expo/vector-icons" //アイコンのために読み込む！Featherはライブラリ名
+import Icon from "../../components/Icon"
 
 import Header from "../../components/Header "
 import CircleButton from "../../components/CircleButton"
@@ -21,7 +22,8 @@ const Detail = () :JSX.Element => {
                 </Text>
             </ScrollView>
             <CircleButton style={{ top:160 }}>
-                <Feather name='plus' size={40} />
+                {/* <Feather name='plus' size={40} /> */}
+                <Icon name="pencil" size={40} color="#FFFFFF" />
             </CircleButton>
         </View>
     )
