@@ -21,7 +21,7 @@ const List = ():JSX.Element => {
 {/* コンポーネント */}
         <CircleButton>
             {/* <Feather name ="plus" size={40} /> */}
-            <Icon name = "plus" size={40} color="red"/>
+            <Icon name = "plus" size={40} color="#FFFFFF"/>
         </CircleButton>
     </View>
     )
