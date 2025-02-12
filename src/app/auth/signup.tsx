@@ -2,7 +2,12 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-nativ
 import Header from "../../components/Header "
 import Button from "../../components/Button"
 
-import { Link } from "expo-router"
+import { Link, router } from "expo-router"
+
+const handlePress = (): void => {
+  // 登録処理を後ほど記述
+  router.push("/memo/list")
+}
 
 const SignUp = (): JSX.Element => {
   return (
@@ -12,7 +17,7 @@ const SignUp = (): JSX.Element => {
         <Text style={styles.title}>SignUp</Text>
         <TextInput style={styles.input} value="Email address" />
         <TextInput style={styles.input} value="Password" />
-            <Button label={"submit"} />
+            <Button label={"submit"} onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
           <Link href ="/auth/login" asChild>

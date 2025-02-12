@@ -3,7 +3,12 @@ import Header from "../../components/Header "
 import Button from "../../components/Button"
 
 // ⬇️ 画面切り替えを行うためのインポート
-import { Link } from "expo-router"
+import { Link, router } from "expo-router"
+
+const handlePress = (): void => {
+  // ログイン処理を後ほど記述
+  router.push("/memo/list")
+}
 
 const LogIn = (): JSX.Element => {
   return (
@@ -13,7 +18,7 @@ const LogIn = (): JSX.Element => {
         <Text style={styles.title}>Login</Text>
         <TextInput style={styles.input} value="Email address" />
         <TextInput style={styles.input} value="Password" />
-        <Button label={"Submit"} />
+        <Button label={"Submit"} onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
           <Link href="/auth/signup" asChild>
