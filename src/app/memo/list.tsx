@@ -1,5 +1,4 @@
 import { View, StyleSheet } from 'react-native'
-import Header from "../../components/Header " // 自分で作成したものだから？{}なし！
 import MemoListItem from "../../components/MemoListItem"
 import CircleButton from "../../components/CircleButton"
 // import { Feather } from "@expo/vector-icons"
@@ -17,7 +16,6 @@ const List = ():JSX.Element => {
     <View style={styles.container}>
 
 {/* コンポーネント */}
-    <Header />
         <View>
 {/* コンポーネント */}
         <MemoListItem />

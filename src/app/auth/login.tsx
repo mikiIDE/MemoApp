@@ -1,5 +1,4 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native"
-import Header from "../../components/Header "
 import Button from "../../components/Button"
 
 // ⬇️ 画面切り替えを行うためのインポート
@@ -13,7 +12,6 @@ const handlePress = (): void => {
 const LogIn = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Header />
       <View style={styles.inner}>
         <Text style={styles.title}>Login</Text>
         <TextInput style={styles.input} value="Email address" />

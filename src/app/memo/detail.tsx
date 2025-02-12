@@ -2,7 +2,6 @@ import { View, Text, ScrollView, StyleSheet } from "react-native"
 // import { Feather } from "@expo/vector-icons" //アイコンのために読み込む！Featherはライブラリ名
 import Icon from "../../components/Icon"
 
-import Header from "../../components/Header "
 import CircleButton from "../../components/CircleButton"
 
 import { router } from "expo-router"
@@ -15,7 +14,6 @@ const handlePress = ():void => {
 const Detail = () :JSX.Element => {
     return (
         <View style={styles.container}>
-            <Header />
             <View style={styles.memoHeader}>
                 <Text style={styles.memoTitle}>買い物リスト</Text>
                 <Text style={styles.memoDate}>2023年10月1日 10:00</Text>
