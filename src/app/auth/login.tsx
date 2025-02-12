@@ -28,13 +28,21 @@ const LogIn = (): JSX.Element => {
         value={email}
         onChangeText={(text) => { setEmail (text)}} //コールバック関数
         // ⇧（textを受け取って、setEmail関数でemailという箱の中身を更新していく→TextInputのvalueとして使われる）
+        autoCapitalize="none"
+        keyboardType="email-address"
+        placeholder="Email Address"
+        textContentType="emailAddress"
         />
         <TextInput 
         style={styles.input} 
         value={password} 
         onChangeText={(text) => {setPassword(text)}}
+        autoCapitalize="none"
+        secureTextEntry //="true"
+        placeholder="Password"
+        textContentType="password"
         />
-        
+
         <Button label={"Submit"} onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>

@@ -3,18 +3,39 @@ import Button from "../../components/Button"
 
 import { Link, router } from "expo-router"
 
+import { useState } from "react"
+
 const handlePress = (): void => {
   // 登録処理を後ほど記述
-  router.push("/memo/list")
+  router.replace("/memo/list")
 }
 
 const SignUp = (): JSX.Element => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>SignUp</Text>
-        <TextInput style={styles.input} value="Email address" />
-        <TextInput style={styles.input} value="Password" />
+                <TextInput
+                style={styles.input}
+                value={email}
+                onChangeText={(text) => { setEmail (text)}} //コールバック関数
+                // ⇧（textを受け取って、setEmail関数でemailという箱の中身を更新していく→TextInputのvalueとして使われる）
+                autoCapitalize="none"
+                keyboardType="email-address"
+                placeholder="Email Address"
+                textContentType="emailAddress"
+                />
+                <TextInput 
+                style={styles.input} 
+                value={password} 
+                onChangeText={(text) => {setPassword(text)}}
+                autoCapitalize="none"
+                secureTextEntry //="true"
+                placeholder="Password"
+                textContentType="password"
+                />
             <Button label={"submit"} onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
