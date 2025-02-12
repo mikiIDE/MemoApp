@@ -6,7 +6,9 @@ import { Link, router } from "expo-router"
 
 const handlePress = (): void => {
   // ログイン処理を後ほど記述
-  router.push("/memo/list")
+  // pushを使うとStackに履歴を追加することになるため
+  // Backボタンを表示させたくない場合replace（ページの置き換え）を利用する
+  router.replace("/memo/list")
 }
 
 const LogIn = (): JSX.Element => {
