@@ -1,9 +1,10 @@
-import { Slot } from "expo-router"
+import { Stack } from "expo-router"
 
 const Layout = () :JSX.Element=> {
-    return <Slot/>
+    return <Stack/>
 }
 
 export default Layout
 
-// これを追加することで、レイアウトを画面端ギリギリまで操作できるようになる
+// Slotを追加することで、レイアウトを画面端ギリギリまで操作できるようになる
+// Stackを追加することで、ナビゲーションバー（画面上部）に戻るボタンが自動で提供される
