@@ -7,8 +7,30 @@ import Icon from "../../components/Icon"
 
 import { router } from "expo-router"
 
-const handlePress =(): void => {
-    router.back()
+import { collection, addDoc } from "firebase/firestore"
+import { db } from "../../config"
+
+
+const handlePress = (): void => {
+    addDoc(collection(db, "memos"),{
+        bodyText:"test"
+    })
+        .then((docRef) => {
+            console.log("success", docRef.id)
+            router.back()
+        })
+        .catch((error) => {
+            console.log(error.message)
+        })
+    // ⬇️asyncを追加し、下記のような非同期処理でも記述可能
+    // 今回はシンプルなので上記で進む（複雑な入れ子処理が必要な場合は下記を推奨）
+    // await addDoc(collection(db, "memos"), {
+    //     bodyText:"test 2"
+    // })
+    //     .catch((error) => {
+    //         console.log(error.message)
+    //     })
+    // router.back()
 }
 
 const Create = ():JSX.Element => {
