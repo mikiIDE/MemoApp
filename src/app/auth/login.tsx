@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from "react-native"
 import Button from "../../components/Button"
 
 // ⬇️ 画面切り替えを行うためのインポート
@@ -6,11 +6,21 @@ import { Link, router } from "expo-router"
 
 import { useState } from "react"
 
-const handlePress = (): void => {
-  // ログイン処理を後ほど記述
-  // pushを使うとStackに履歴を追加することになるため
-  // Backボタンを表示させたくない場合replace（ページの置き換え）を利用する
-  router.replace("/memo/list")
+import { auth } from "../../config"
+import { signInWithEmailAndPassword } from "firebase/auth"
+
+
+const handlePress = (email: string, password: string): void => {
+  // ログイン
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential.user.uid)
+      router.replace("/memo/list")
+    })
+    .catch((error) => {
+      console.log(error)
+      Alert.alert(error.message)
+    }) 
 }
 
 const LogIn = (): JSX.Element => {
@@ -43,10 +53,10 @@ const LogIn = (): JSX.Element => {
         textContentType="password"
         />
 
-        <Button label={"Submit"} onPress={handlePress} />
+        <Button label={"Submit"} onPress={() => { handlePress(email,password) }} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
-          <Link href="/auth/signup" asChild>
+          <Link href="/auth/signup" asChild replace>
           <TouchableOpacity>
           <Text style={styles.footerLink}>Sign up here!</Text>
           </TouchableOpacity>
