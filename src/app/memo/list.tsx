@@ -21,7 +21,7 @@ const List = ():JSX.Element => {
         navigation.setOptions({
             headerRight:() => { return<LogOutButton />}
         })
-    }, [])
+    }, []) //[]配列には依存関係（影響を受ける対象）を記述する
 
     return (
         // まずは全体を囲むView
