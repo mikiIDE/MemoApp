@@ -16,6 +16,7 @@ const handlePress = () :void => {
 const List = ():JSX.Element => {
     const navigation = useNavigation()
     // useEffectを使って、画面が読み込まれた時に１度だけ実行する
+    // 副作用だと思えばOK
     useEffect(() => {
         navigation.setOptions({
             headerRight:() => { return<LogOutButton />}

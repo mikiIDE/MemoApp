@@ -4,6 +4,8 @@ import Button from "../../components/Button"
 // ⬇️ 画面切り替えを行うためのインポート
 import { Link, router } from "expo-router"
 
+import { useState } from "react"
+
 const handlePress = (): void => {
   // ログイン処理を後ほど記述
   // pushを使うとStackに履歴を追加することになるため
@@ -12,12 +14,27 @@ const handlePress = (): void => {
 }
 
 const LogIn = (): JSX.Element => {
+  // emailが値を保持する箱、setEmailが値を変更する関数
+  // useStateの直後にはいるのが（初期値）
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Login</Text>
-        <TextInput style={styles.input} value="Email address" />
-        <TextInput style={styles.input} value="Password" />
+        <TextInput
+        style={styles.input}
+        value={email}
+        onChangeText={(text) => { setEmail (text)}} //コールバック関数
+        // ⇧（textを受け取って、setEmail関数でemailという箱の中身を更新していく→TextInputのvalueとして使われる）
+        />
+        <TextInput 
+        style={styles.input} 
+        value={password} 
+        onChangeText={(text) => {setPassword(text)}}
+        />
+        
         <Button label={"Submit"} onPress={handlePress} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
