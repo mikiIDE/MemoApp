@@ -2,6 +2,9 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-nativ
 import Header from "../../components/Header "
 import Button from "../../components/Button"
 
+// ⬇️ 画面切り替えを行うためのインポート
+import { Link } from "expo-router"
+
 const LogIn = (): JSX.Element => {
   return (
     <View style={styles.container}>
@@ -13,9 +16,11 @@ const LogIn = (): JSX.Element => {
         <Button label={"Submit"} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
+          <Link href="/auth/signup" asChild>
           <TouchableOpacity>
           <Text style={styles.footerLink}>Sign up here!</Text>
           </TouchableOpacity>
+          </Link>
         </View>
       </View>
     </View>

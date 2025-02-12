@@ -2,6 +2,8 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-nativ
 import Header from "../../components/Header "
 import Button from "../../components/Button"
 
+import { Link } from "expo-router"
+
 const SignUp = (): JSX.Element => {
   return (
     <View style={styles.container}>
@@ -13,9 +15,11 @@ const SignUp = (): JSX.Element => {
             <Button label={"submit"} />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registered?</Text>
+          <Link href ="/auth/login" asChild>
           <TouchableOpacity>
           <Text style={styles.footerLink}>Log in here!</Text>
           </TouchableOpacity>
+          </Link>
         </View>
       </View>
     </View>
