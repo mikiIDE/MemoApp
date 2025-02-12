@@ -25,7 +25,7 @@ const Detail = () :JSX.Element => {
                     本文ようなので使い方を間違えると不自然に見えることもあるため要注意！
                 </Text>
             </ScrollView>
-            <CircleButton onPress={handlePress} style={{ top:160 }}>
+            <CircleButton onPress={handlePress} style={{ top:60 }}>
                 {/* <Feather name='plus' size={40} /> */}
                 <Icon name="pencil" size={40} color="#FFFFFF" />
             </CircleButton>
