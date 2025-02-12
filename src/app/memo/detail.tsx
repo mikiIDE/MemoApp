@@ -5,6 +5,12 @@ import Icon from "../../components/Icon"
 import Header from "../../components/Header "
 import CircleButton from "../../components/CircleButton"
 
+import { router } from "expo-router"
+
+const handlePress = ():void => {
+    router.push("/memo/edit")
+}
+
 
 const Detail = () :JSX.Element => {
     return (
@@ -21,7 +27,7 @@ const Detail = () :JSX.Element => {
                     本文ようなので使い方を間違えると不自然に見えることもあるため要注意！
                 </Text>
             </ScrollView>
-            <CircleButton style={{ top:160 }}>
+            <CircleButton onPress={handlePress} style={{ top:160 }}>
                 {/* <Feather name='plus' size={40} /> */}
                 <Icon name="pencil" size={40} color="#FFFFFF" />
             </CircleButton>

@@ -5,6 +5,12 @@ import CircleButton from "../../components/CircleButton"
 // import { Feather } from "@expo/vector-icons"
 import Icon from "../../components/Icon"
 
+import { router } from "expo-router"
+
+const handlePress = () :void => {
+    router.push("/memo/create")
+}
+
 const List = ():JSX.Element => {
     return (
         // まずは全体を囲むView
@@ -19,7 +25,7 @@ const List = ():JSX.Element => {
         <MemoListItem />
         </View>
 {/* コンポーネント */}
-        <CircleButton>
+        <CircleButton onPress ={handlePress}>
             {/* <Feather name ="plus" size={40} /> */}
             <Icon name = "plus" size={40} color="#FFFFFF"/>
         </CircleButton>
