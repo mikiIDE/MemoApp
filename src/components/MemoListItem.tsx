@@ -1,12 +1,33 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native"
 import Icon from "./Icon"
 
 import { Link } from "expo-router"
 import { type Memo } from "../../types/memo"
 
+import { deleteDoc, doc } from "firebase/firestore"
+import { auth, db } from "../config"
+
 interface Props {
     memo: Memo
 }
+
+const handlePress = (id: string): void => {
+    if(auth.currentUser === null) { return }
+    const ref = doc(db, `users/${auth.currentUser.uid}/memos`, id)
+    Alert.alert("メモを削除します","よろしいですか？", [
+        {
+            text: "キャンセル"
+        },
+        {
+            text: "削除する",
+            style: "destructive", //このスタイルはiOSのみ適用される
+            onPress: () => {
+                deleteDoc(ref)
+                .catch(() => Alert.alert("削除に失敗しました"))
+            }
+        }
+    ])
+} 
 
 const MemoListItem = (props: Props): JSX.Element | null => {
     const { memo } = props
@@ -21,7 +42,7 @@ const MemoListItem = (props: Props): JSX.Element | null => {
                 <Text numberOfLines={1} style={styles.memoListItemTitle}>{bodyText}</Text>
                 <Text style={styles.memoListItemDate}>{dateString}</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress= {() => { handlePress(memo.id) }}>
                 <Icon name="delete" size={35} color="#B0B0B0" />
             </TouchableOpacity>
         </TouchableOpacity>
