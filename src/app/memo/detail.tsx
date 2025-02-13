@@ -9,18 +9,18 @@ import { onSnapshot, doc } from "firebase/firestore"
 import { auth, db } from "../../config"
 import { type Memo } from "../../../types/memo"
 
-const handlePress = ():void => {
-    router.push("/memo/edit")
+const handlePress = (id: string):void => {
+    router.push({ pathname: "/memo/edit", params: { id } })
 }
 
 
 const Detail = () :JSX.Element => {
-    const { id } = useLocalSearchParams()
+    const id  = String(useLocalSearchParams().id)
     console.log(id)
     const [memo, setMemo] = useState<Memo | null>(null)
     useEffect(() => {
         if (auth.currentUser === null) { return }
-        const ref = doc(db, `users/${auth.currentUser.uid}/memos`, String(id))
+        const ref = doc(db, `users/${auth.currentUser.uid}/memos`, id)
         const unsubscribe =
         onSnapshot(ref, (memoDoc) => {
             const { bodyText, updatedAt } = memoDoc.data() as Memo
@@ -43,7 +43,7 @@ const Detail = () :JSX.Element => {
                     {memo?.bodyText}
                 </Text>
             </ScrollView>
-            <CircleButton onPress={handlePress} style={{ top:60 }}>
+            <CircleButton onPress={() => { handlePress(id) }} style={{ top:60 }}>
                 {/* <Feather name='plus' size={40} /> */}
                 <Icon name="pencil" size={40} color="#FFFFFF" />
             </CircleButton>
