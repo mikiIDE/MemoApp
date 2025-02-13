@@ -1,5 +1,5 @@
 import { 
-    View, StyleSheet, TextInput, KeyboardAvoidingView
+    View, StyleSheet, TextInput
  } from "react-native"
 
 import CircleButton from "../../components/CircleButton"
@@ -7,13 +7,16 @@ import Icon from "../../components/Icon"
 
 import { router } from "expo-router"
 
+import KeyboardAvoidingView from "../../components/KeyboardAvoidingView"
+
+
 const handlePress = () :void =>{
     router.back()
 }
 
 const Edit = ():JSX.Element => {
     return (
-        <KeyboardAvoidingView behavior="height" style = {styles.container}>
+        <KeyboardAvoidingView style = {styles.container}>
             <View style = {styles.inputContainer}>
                 <TextInput multiline style= {styles.input} value ={"買い物\nリスト"} />
                 {/* 上のmultilineはiOS用 */}
