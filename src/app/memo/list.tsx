@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
 import MemoListItem from "../../components/MemoListItem"
 import CircleButton from "../../components/CircleButton"
 // import { Feather } from "@expo/vector-icons"
@@ -49,12 +49,10 @@ const List = ():JSX.Element => {
     },[])
     return (
     <View style={styles.container}>
-        <View>
-        {memos.map((memo) => {
-            return <MemoListItem memo={memo} /> // { return }は省略可能
-        })}
-        </View>
-{/* コンポーネント */}
+        <FlatList 
+        data={memos}
+        renderItem={({ item }) => { return <MemoListItem memo={item} />}}
+        />
         <CircleButton onPress ={handlePress}>
             {/* <Feather name ="plus" size={40} /> */}
             <Icon name = "plus" size={40} color="#FFFFFF"/>
