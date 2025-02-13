@@ -5,18 +5,21 @@ import CircleButton from "../../components/CircleButton"
 import Icon from "../../components/Icon"
 import LogOutButton from '../../components/LogOutButton'
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import { router, useNavigation } from "expo-router"
 
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore"
 import { db, auth } from "../../config"
 
+import { type Memo } from "../../../types/memo"
+
 const handlePress = () :void => {
     router.push("/memo/create")
 }
 
 const List = ():JSX.Element => {
+    const [memos, setMemos] = useState<Memo[]>([])
     const navigation = useNavigation()
     // useEffectを使って、画面が読み込まれた時に１度だけ実行する
     // 副作用だと思えばOK
@@ -30,21 +33,26 @@ const List = ():JSX.Element => {
         const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
         const q = query(ref, orderBy("updatedAt","desc"))
         const unsubscribe = onSnapshot(q, (snapshot) => {
+            const remoteMemos: Memo[] = []
             snapshot.forEach((doc) => {
                 console.log("memo", doc.data())
+                const { bodyText, updatedAt } = doc.data()
+                remoteMemos.push({
+                    id:doc.id,
+                    bodyText,
+                    updatedAt
+                })
             })
+            setMemos(remoteMemos)
         })
         return unsubscribe
     },[])
     return (
     <View style={styles.container}>
-
-{/* コンポーネント */}
         <View>
-{/* コンポーネント */}
-        <MemoListItem />
-        <MemoListItem />
-        <MemoListItem />
+        {memos.map((memo) => {
+            return <MemoListItem memo={memo} /> // { return }は省略可能
+        })}
         </View>
 {/* コンポーネント */}
         <CircleButton onPress ={handlePress}>
