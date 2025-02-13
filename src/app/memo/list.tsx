@@ -9,6 +9,9 @@ import { useEffect } from "react"
 
 import { router, useNavigation } from "expo-router"
 
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore"
+import { db, auth } from "../../config"
+
 const handlePress = () :void => {
     router.push("/memo/create")
 }
@@ -22,9 +25,18 @@ const List = ():JSX.Element => {
             headerRight:() => { return<LogOutButton />}
         })
     }, []) //[]配列には依存関係（影響を受ける対象）を記述する
-
+    useEffect(() => {
+        if(auth.currentUser === null){ return }
+        const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
+        const q = query(ref, orderBy("updatedAt","desc"))
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            snapshot.forEach((doc) => {
+                console.log("memo", doc.data())
+            })
+        })
+        return unsubscribe
+    },[])
     return (
-        // まずは全体を囲むView
     <View style={styles.container}>
 
 {/* コンポーネント */}
